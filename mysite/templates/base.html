@@ -1,0 +1,142 @@
+{% load static wagtailuserbar %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="The portfolio and blog of Monique Blake">
+        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
+
+        {# Global stylesheets #}
+        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}">
+
+        {% block extra_css %}
+            {# Override this in templates to add extra stylesheets #}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'css/otherpages.css' %}">
+        {% endblock %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+
+            <header class="container">
+        <!-- Logo -->
+        <div id="site-logo">
+            <h1 id="site-firstname-h1">Monique</h1>
+            <h1 id="site-lastname-h1">Blake</h1>
+        </div>
+
+    <!-- Navbar Section -->
+        <div id="navbar-sm">
+        <nav id="main-upper-menu" class="navmenu">
+		<ul>
+            <li>
+				<a href="#" title="Home">
+					<span>Home</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" title="About">
+					<span>About</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" title="Resum&eacute;">
+					<span>Resum&eacute;</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" title="Portfolio">
+					<span>P.folio</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" title="Blog">
+					<span>Blog</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" title="Contact">
+					<span>Mail</span>
+				</a>
+			</li>
+		</ul>
+	</nav>
+    </div>
+    <!-- Navbar Section End -->
+
+    </header>
+    <hr id="header-separator">
+
+    <!-- Search Bar Section -->
+    <div class="container">
+        <div id="custom-search-input">
+        <!-- search input of the search bar -->
+        <div class="input-group col-md-4 pull-right">
+            <input type="text" class="search-query form-control" placeholder="Search" />
+            
+            <!-- button section of the search bar -->
+            <span class="input-group-btn">
+                <button class="btn btn-danger" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </div>
+        </div>
+    </div>
+    <!-- Search Bar Section End -->
+    <article>
+    <div class="container content">
+        {% block content %}{% endblock %}
+    </div>
+    </article>
+
+        <!-- ================= Footer Section ================= -->
+        <footer class="footer">
+            <div class="container">
+                <div id="footer-copyright">
+                    <p>
+                        Copyright &copy; 2013-{{ currentYear }} Monique Blake. All Rights Reserved.
+                    </p>
+                </div>
+                
+                <!-- Social Media Icons -->
+                <div id="footer-social-media-bar">
+                    <a href="https://github.com/Munnu/">
+                        <img class="footer-icons" src="{% static './icons/github.svg' %}"  alt="View Monique Blake's profile on GitHub">
+                    </a>
+                    
+                    <a href="https://www.linkedin.com/pub/monique-blake/56/161/a13">
+                        <img class="footer-icons" src="{% static './icons/linkedin.svg' %}"  alt="View Monique Blake's profile on LinkedIn">
+                    </a>
+                    
+                    <a href="https://twitter.com/moniqueblake0">
+                        <img class="footer-icons" src="{% static './icons/twitter.svg' %}"  alt="View Monique Blake's profile on Twitter %">
+                    </a>
+                    
+                    <a href="http://www.instructables.com/member/MunnuB/">
+                        <img class="footer-icons" src="{% static './icons/robot.svg' %}"  alt="View Monique Blake's profile on Instructables">
+                    </a>
+                    
+                </div>
+                <!-- Social Media Icons End -->
+            </div>
+        </footer>
+        
+        {# Global javascript #}
+        <script type="text/javascript" src="{% static 'js/mysite.js' %}"></script>
+
+        {% block extra_js %}
+            {# Override this in templates to add extra javascript #}
+             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+            <script src="{% static 'scripts/color-svg.js' %}"></script>
+            <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+        {% endblock %}
+    </body>
+</html>

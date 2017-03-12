@@ -1,0 +1,94 @@
+/* Navigation Section */
+/* from style.css */
+    nav ul li a {
+        display: block;
+        width: 100px;
+        height: 100px;
+    }
+    
+    nav ul li { 
+        float: left; 
+        margin: 0 20px 30px 0;
+    }
+
+    nav ul li a span {
+        font: 2em "Helvetica", sans-serif;
+        text-transform: uppercase; 
+        position: absolute; 
+        left: 100%;
+        top: 70px;
+        display: none;
+    }
+
+/* =============================================== */
+/* Media Query Stuff */
+
+@media only screen and (max-width: 992px) {
+    div#navbar-lg {
+        width: 400px;
+    }
+	
+    nav ul li a span {
+        font: 2em "Helvetica", sans-serif;
+        text-transform: uppercase; 
+        position: relative; 
+        left: 0;
+        top: 100px;
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+
+    body #main-blurb-h5 {
+        padding-left: 3px;
+    }
+
+    body #main-firstname-h1 { 
+       font-size: 6em; 
+       word-wrap: break-word;
+    }
+    
+    body #main-lastname-h1  { 
+        font-size: 5em;
+        margin-top: -15px;
+        padding-left: 180px;
+        word-wrap: break-word;
+    }
+
+    nav ul {
+        margin-left: -35px;
+    }
+
+    #footer-social-media-bar {
+        float: none;
+        margin: 0 auto;
+    }
+    
+    .footer-icons {
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    body #main-lastname-h1  { 
+        padding-left: 0;
+    }
+
+    nav ul li a {
+        width: 90px;
+        height: 90px;
+    }
+
+    nav ul li a span {
+        font-size: 150%;
+        top: 90px;
+    }
+    
+}
+
+@media only screen and (max-width: 350px) {
+    body #main-firstname-h1, body #main-lastname-h1 {
+        font-size: 5em;
+    }
+}

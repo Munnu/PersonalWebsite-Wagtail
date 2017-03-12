@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-blogindexpage{% endblock %}
+
+{% block content %}
+    <header>
+    <h1 class="current-page-name">Blog</h1>
+    </header>
+    <h2 class="content">{{ page.title }}</h2>
+
+    <p class="content">
+        {{ page.intro|richtext }}
+    </p>
+
+    <p class="content">
+    {% if page.related_links.all %}
+        <ul>
+            {% for item in page.related_links.all %}
+                <li><a href="{{ item.link }}">{{ item.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </p>
+
+{% endblock %}
