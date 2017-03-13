@@ -21,6 +21,13 @@ class BlogIndexPage(Page):
         FieldPanel('intro', classname="full")
     ]
 
+    def get_context(self, request):
+        # Update context to include only published posts, ordered by reverse-chron
+        context = super(BlogIndexPage, self).get_context(request)
+        blogpages = self.get_children().live().order_by('-first_published_at')
+        context['blogpages'] = blogpages
+        return context
+
 class LinkFields(models.Model):
     link_external = models.URLField("External link", blank=True)
     link_page = models.ForeignKey(
@@ -57,13 +64,12 @@ class RelatedLink(LinkFields):
         abstract = True
 
 class BlogPage(Page):
-    main_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
+    def main_image(self):
+        gallery_item = self.gallery_images.first()
+        if gallery_item:
+            return gallery_item.image
+        else:
+            return None
 
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
@@ -76,9 +82,22 @@ class BlogPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('date'),
-        ImageChooserPanel('main_image'),
         FieldPanel('intro'),
         FieldPanel('body', classname="full"),
+        InlinePanel('gallery_images', label="Gallery images"),
+    ]
+
+class BlogPageGalleryImage(Orderable):
+    page = ParentalKey(BlogPage, related_name="gallery_images")
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        on_delete=models.CASCADE, related_name="+"
+    )
+    caption = models.CharField(blank=True, max_length=250)
+
+    panels = [
+        ImageChooserPanel('image'),
+        FieldPanel('caption'),
     ]
 
 class BlogIndexRelatedLink(Orderable, RelatedLink):
