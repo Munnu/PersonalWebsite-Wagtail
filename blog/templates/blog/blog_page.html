@@ -14,6 +14,19 @@
         </a>
     </p>
 
+    {% with categories=page.categories.all %}
+        {% if categories %}
+            <h3>Posted in:</h3>
+            <ul>
+                {% for category in categories %}
+                    <li style="display: inline">
+                        {% image category.icon fill-32x32 style="vertical-align: middle" %}
+                        {{ category.name }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
 
     {% if page.main_image %}
       {% image page.main_image width-400 %}
