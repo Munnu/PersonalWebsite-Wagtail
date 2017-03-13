@@ -64,12 +64,13 @@ class RelatedLink(LinkFields):
         abstract = True
 
 class BlogPage(Page):
-    def main_image(self):
-        gallery_item = self.gallery_images.first()
-        if gallery_item:
-            return gallery_item.image
-        else:
-            return None
+    main_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
@@ -82,6 +83,7 @@ class BlogPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('date'),
+        ImageChooserPanel('main_image'),
         FieldPanel('intro'),
         FieldPanel('body', classname="full"),
         InlinePanel('gallery_images', label="Gallery images"),
