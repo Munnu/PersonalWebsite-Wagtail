@@ -9,18 +9,12 @@
     </header>
     <h2 class="content">{{ page.title }}</h2>
 
-    <p class="content">
-        {{ page.intro|richtext }}
-    </p>
+    {{ page.intro|richtext }}
 
-    <p class="content">
-    {% if page.related_links.all %}
-        <ul>
-            {% for item in page.related_links.all %}
-                <li><a href="{{ item.link }}">{{ item.title }}</a></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    </p>
+    {% for post in page.get_children %}
+        <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
+        {{ post.specific.intro|richtext }}
+        {{ post.specific.body|richtext }}
+    {% endfor %}
 
 {% endblock %}

@@ -8,14 +8,18 @@
     <h1 class="current-page-name">Blog</h1>
     </header>
     <h2 class="content">{{ page.title }}</h2>
-    <p class="content meta">{{ page.date }}</p>
+    <p class="content meta">{{ page.date }} ::
+        <a href="{{ page.get_parent.url }}">
+            Return to main blog page
+        </a>
+    </p>
+
 
     {% if page.main_image %}
       {% image page.main_image width-400 %}
     {% endif %}
 
     <p class="content">{{ page.intro }}</p>
-    <p class="content">
-        {{ page.body|richtext }}
-    </p>
+    {{ page.body|richtext }}
+
 {% endblock %}

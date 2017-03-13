@@ -27,7 +27,7 @@ img {
     max-width: 100%;
 }
 
-p.content {
+p.content, .rich-text {
     text-align: justify;
     color: #8273c1;
 }
