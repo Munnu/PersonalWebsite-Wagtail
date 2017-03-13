@@ -29,13 +29,13 @@
         </div>
     {% endfor %}
 
-{% if page.tags.all.count %}
-    <div class="tags">
-        <h2 class="content">Tags</h2>
-        {% for tag in page.tags.all %}
-            <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
-        {% endfor %}
-    </div>
-{% endif %}
+    {% if page.tags.all.count %}
+        <div class="tags">
+            <h2 class="content">Tags</h2>
+            {% for tag in page.tags.all %}
+                <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
+            {% endfor %}
+        </div>
+    {% endif %}
 
 {% endblock %}
