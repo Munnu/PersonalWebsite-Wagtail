@@ -32,6 +32,10 @@ p.content, .rich-text {
     color: #8273c1;
 }
 
+div.tags {
+    clear: both;
+}
+
 h1.content, h2.content {
     color: #9278ff;
     font-size: 2em;
