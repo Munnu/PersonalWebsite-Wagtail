@@ -13,15 +13,15 @@
     <form action="{% pageurl page %}" method="POST">
         {% csrf_token %}
         {% for field in form %}
-            {% if form.field_type != 'multiline'%}
+            {% if field.label != 'Message' %}
                 <br>
                 <div class="form-group">
                     <input type="text" class="form-control" id="{{ field.label | lower }}" name="{{ field.label | lower}}" placeholder="{{ field.label }}" required>
                 </div>
             {% else %}
-            <div class="form-group">
-                <textarea class="form-control" id="{{ field.label | lower }}" placeholder="{{ field.label }}" maxlength="500" rows="7"></textarea>
-            </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="{{ field.label | lower }}" placeholder="{{ field.label }}" maxlength="500" rows="7"></textarea>
+                </div>
             {% endif %}
         {% endfor %}
 
