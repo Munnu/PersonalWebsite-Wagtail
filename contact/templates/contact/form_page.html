@@ -16,12 +16,16 @@
         {% for field in form %}
             <br>
             <div class="form-group">
-                  {% render_field field class="form-control" placeholder=field.label %}
+                  {% if field.label != "Message" %}
+                    {% render_field field class="form-control" placeholder=field.label %}
+                  {% endif %}
+                  {% if field.label == "Message" %}
+                    {% render_field field class="form-control" placeholder=field.label %}
+                        <span class="help-block"><span id="characterLeft" class="help-block ">You have reached the limit</span></span>
+                  {% endif %}
             </div>
         {% endfor %}
-        <div>
-            <span class="help-block"><span id="characterLeft" class="help-block ">You have reached the limit</span></span>
-        </div>
+
 
         <button type="submit" name="submit" class="contact-button pull-right">Submit Form</button>
         <button type="reset" name="reset" class="contact-button pull-left">Clear Form</button>
