@@ -1,6 +1,6 @@
 $(document).ready(function(){ 
     $('#characterLeft').text('500 characters left');
-    $('#message').keydown(function () {
+    $('#id_message').keydown(function () {
         var max = 500;
         var len = $(this).val().length;
         if (len >= max) {
