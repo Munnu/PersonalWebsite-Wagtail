@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from wagtailcaptcha.models import WagtailCaptchaEmailForm
 from modelcluster.fields import ParentalKey
 from wagtail.wagtailadmin.edit_handlers import (
     FieldPanel, FieldRowPanel,
@@ -14,7 +15,7 @@ class FormField(AbstractFormField):
     page = ParentalKey('FormPage', related_name='form_fields')
 
 
-class FormPage(AbstractEmailForm):
+class FormPage(WagtailCaptchaEmailForm):
     intro = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
 
