@@ -75,21 +75,25 @@
     <hr id="header-separator">
 
     <!-- Search Bar Section -->
-    <div class="container">
-        <div id="custom-search-input">
-        <!-- search input of the search bar -->
-        <div class="input-group col-md-4 pull-right">
-            <input type="text" class="search-query form-control" placeholder="Search" />
-            
-            <!-- button section of the search bar -->
-            <span class="input-group-btn">
-                <button class="btn btn-danger" type="button">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </span>
+    <form action="{% url 'search' %}"  method="get">
+        <div class="container">
+            <div id="custom-search-input">
+            <!-- search input of the search bar -->
+            <div class="input-group col-md-4 pull-right">
+                    <input type="text" class="search-query form-control"
+                           name="query"{% if search_query %} value="{{ search_query }}"{% endif %}
+                           placeholder="Search" />
+
+                    <!-- button section of the search bar -->
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-danger" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+            </div>
+            </div>
         </div>
-        </div>
-    </div>
+    </form>
     <!-- Search Bar Section End -->
     <article>
     <div class="container content">
