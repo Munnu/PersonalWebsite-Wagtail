@@ -3,10 +3,13 @@ from __future__ import absolute_import, unicode_literals
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
 
+from wagtail.wagtailadmin.forms import SearchForm
+
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailsearch.models import Query
+#from wagtail.wagtailsearch.views import wagtail_search_views
 
-
+# from wagtail repo wagtail/wagtail/project_template/search/views.py
 def search(request):
     search_query = request.GET.get('query', None)
     page = request.GET.get('page', 1)
