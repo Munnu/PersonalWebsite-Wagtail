@@ -10,7 +10,6 @@
     </header>
     <p class="content">{{ page.intro|richtext }}</p>
     <div class="col-md-8">
-        {% csrf_token %}
     <form action="{% pageurl page %}" method="POST">
         {% csrf_token %}
         {% for field in form %}
