@@ -6,13 +6,8 @@
 {% block title %}Search{% endblock %}
 
 {% block content %}
-    <h1>Search</h1>
-
-    <form action="{% url 'search' %}" method="get">
-        <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-        <input type="submit" value="Search" class="button">
-    </form>
-
+    <h1 class="current-page-name">Search Query</h1>
+    <h1 class="content header-title-default">Search Query{% if search_query %} - "{{ search_query }}"{% endif %}</h1>
     {% if search_results %}
         <ul>
             {% for result in search_results %}
