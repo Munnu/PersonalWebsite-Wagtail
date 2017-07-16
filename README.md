@@ -3,7 +3,7 @@
 I highly doubt someone is going to add upon this, but it's likely since Wagtail is new, someone will look at this for referencing purposes
 
 I created a dummy layout and design in order to revamp  [my personal website here
-](http://https://github.com/Munnu/PersonalWebsite)
+](https://github.com/Munnu/PersonalWebsite)
 
 Now I'm learning Django and Wagtail concurrently to build the web application version of the website. This is currently WIP as I'm chugging along and duking it out.
 
