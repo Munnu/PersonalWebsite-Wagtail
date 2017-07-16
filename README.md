@@ -1,11 +1,11 @@
 # Basic Development Notes
 
-I highly doubt someone is going to add upon this, but it's likely since Wagtail is new, someone will look at this for referencing purposes
+I highly doubt someone is going to add upon this, but it's likely since Wagtail is new, someone will look at this for referencing purposes.
 
 I created a dummy layout and design in order to revamp  [my personal website here
-](https://github.com/Munnu/PersonalWebsite)
+](https://github.com/Munnu/PersonalWebsite).
 
-Now I'm learning Django and Wagtail concurrently to build the web application version of the website. This is currently WIP as I'm chugging along and duking it out.
+Now I'm learning Django and Wagtail concurrently to build the web application version of the website. This is currently WIP as I'm chugging along and duking it out. My progress has been bits and pieces but hopefully will be overcome.
 
 # Virtual Environments
 
