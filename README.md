@@ -21,6 +21,6 @@ In order to run this, you will need to create a virtual environment.
 
     2. `pip install -r requirements.txt` does the trick
     
-Then there's the usual python manage.py runserver and whatever else you've learned from Django and the Wagtail documentation 
+Then there's the usual `python manage.py runserver` and whatever else you've learned from Django and the Wagtail documentation.
 
 Ex: creating a superuser to access the administration panel, or you may have to override the username and password for development purposes, I'm sure there's something on stackoverflow for that. Since I'm not aware on what is needed as I have not cloned my own project, I'm not sure.
