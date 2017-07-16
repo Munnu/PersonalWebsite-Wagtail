@@ -14,6 +14,7 @@ from __future__ import absolute_import, unicode_literals
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from . import secrets
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -22,8 +23,30 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
-
 # Application definition
+DEBUG = True
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = secrets.SECRET_KEY
+
+ALLOWED_HOSTS = ['f94d7569.ngrok.io', 'localhost', '127.0.0.1']
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = secrets.Gmail_Email_Info().EMAIL_HOST
+EMAIL_HOST_PASSWORD = secrets.Gmail_Email_Info().EMAIL_HOST_PASSWORD
+EMAIL_HOST_USER = secrets.Gmail_Email_Info().EMAIL_HOST_USER
+EMAIL_PORT = secrets.Gmail_Email_Info().EMAIL_PORT
+EMAIL_USE_TLS = secrets.Gmail_Email_Info().EMAIL_USE_TLS
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+# Google Recaptcha Data
+RECAPTCHA_PUBLIC_KEY = secrets.RECAPTCHA_PUBLIC_KEY
+RECAPTCHA_PRIVATE_KEY = secrets.RECAPTCHA_PRIVATE_KEY
+NOCAPTCHA = False
+RECAPTCHA_USE_SSL = False
+SECURE_SSL_REDIRECT = False
 
 INSTALLED_APPS = [
     'home',
@@ -46,6 +69,9 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
+    'sslserver',
+    'captcha',
+    'wagtailcaptcha',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -70,6 +96,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'mysite.urls'
+
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch2',
+        'INDEX': 'myapp'
+    }
+}
 
 TEMPLATES = [
     {
