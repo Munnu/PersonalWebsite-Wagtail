@@ -27,11 +27,17 @@ I was banging my head on this for a bit to realize that in my current setup, des
 ---
 
 ## My current todo
-**Develop the portfolio gallery
+
+**Develop the portfolio gallery (portfolio-page)
 **
 
 - I assume this will need to be developed similarly to the images section in the Wagtail tutorial, mixed with an index page that contains icons.
 - I want to be able to create categories: **Engineering | Art | ... | Misc | All** within portfolio gallery for a user to choose which part of the portfolio gallery is of interest to them.
+
+** Creating a wagtail portfolio-item section **
+
+- If I'm not mistaken, I have not made it to creating the page that would be linked from the main gallery that goes into detail about a single personal project done.
+- This shouldn't be too much to do as it emulates the Wagtail tutorial. I think this is why it was overlooked.
 
 **Make the search functionality better**
 
@@ -41,3 +47,10 @@ I was banging my head on this for a bit to realize that in my current setup, des
 **
 
 - Because I went head-first into it and did the demo concurrent to the web app development. There's a lot of demo/experimentation in this. Maybe after I'm done, it's best to create a demo fork and then clean up `master`.
+- This would entail having separate sections
+    - Like linking the pages to each other
+    - Creating sections: Home, About, Resume, Portfolio, Blog, ~~Contact~~.
+    
+**Designer Edits**
+
+- Though this belongs on the HTML/CSS version and it has nothing to do with me, there will most likely be designer edits. I think I have found a collaborator for the first time in my life.
