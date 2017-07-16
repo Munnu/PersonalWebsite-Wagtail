@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-formpage{% endblock %}
+{% block content %}
+    <header>
+    <h1 class="current-page-name">Contact</h1>
+    <h1 class="content header-title-default">{{ page.title }}</h1>
+    </header>
+    <p class="content">{{ page.intro|richtext }}</p>
+    <div class="col-md-8">
+    <form action="{% pageurl page %}" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <br>
+            <div class="form-group">
+            {% if field.label != 'Message' %}
+                    <input type="text" class="form-control" id="{{ field.label | lower }}" name="{{ field.label | lower}}" placeholder="{{ field.label }}" required>
+            {% else %}
+                    <textarea class="form-control" id="{{ field.label | lower }}" placeholder="{{ field.label }}" maxlength="500" rows="7" required></textarea>
+            {% endif %}
+            </div>
+        {% endfor %}
+        <div>
+            <span class="help-block"><span id="characterLeft" class="help-block ">You have reached the limit</span></span>
+        </div>
+
+        <button type="submit" name="submit" class="contact-button pull-right">Submit Form</button>
+        <button type="reset" name="reset" class="contact-button pull-left">Clear Form</button>
+    </form>
+    </div>
+{% endblock %}
