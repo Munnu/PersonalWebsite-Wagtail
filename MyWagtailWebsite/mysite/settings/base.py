@@ -29,7 +29,7 @@ DEBUG = True
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = secrets.SECRET_KEY
 
-ALLOWED_HOSTS = ['f94d7569.ngrok.io', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['f94d7569.ngrok.io', 'localhost', '127.0.0.1', 'blog.localhost', 'old.localhost']
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
@@ -50,9 +50,11 @@ SECURE_SSL_REDIRECT = False
 
 INSTALLED_APPS = [
     'home',
-    'search',
+    'about',
     'blog',
     'contact',
+    'resume',
+    'search',
 
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',

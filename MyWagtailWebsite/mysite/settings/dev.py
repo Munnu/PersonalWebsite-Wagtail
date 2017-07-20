@@ -10,7 +10,7 @@ use_local_email_script = True
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = secrets.SECRET_KEY
 
-ALLOWED_HOSTS = ['f94d7569.ngrok.io', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['f94d7569.ngrok.io', 'localhost', '127.0.0.1', 'blog.localhost', 'old.localhost']
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
