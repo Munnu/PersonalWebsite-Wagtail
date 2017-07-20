@@ -27,6 +27,14 @@ img {
     max-width: 100%;
 }
 
+img.left {
+    float: left;
+}
+
+img.right {
+    float: left;
+}
+
 p.content, li.content, ul.content, ol.content, .rich-text {
     text-align: justify;
     color: #8273c1;
