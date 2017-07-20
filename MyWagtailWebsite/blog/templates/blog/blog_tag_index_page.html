@@ -3,7 +3,7 @@
 
 {% block content %}
     {% if request.GET.tag|length %}
-        <h4>Showing pages tagged "{{ request.GET.tag }}"</h4>
+        <h1 class="content">Showing pages tagged "{{ request.GET.tag }}"</h1>
     {% endif %}
 
     {% for blogpage in blogpages %}
