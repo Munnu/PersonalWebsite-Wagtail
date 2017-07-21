@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-portfoliopage{% endblock %}
+
+{% block content %}
+    <header>
+    <h1 class="current-page-name">Portfolio</h1>
+    </header>
+    <h2 class="content">{{ page.title }}</h2>
+
+    {{ page.intro|richtext }}
+
+
+{% endblock %}

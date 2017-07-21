@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-portfolioitempage{% endblock %}
+
+{% block content %}
+    <header>
+    <h1 class="current-page-name">Portfolio</h1>
+    </header>
+    <h2 class="content">{{ page.title }}</h2>
+    <h4>
+        <a href="{{ page.get_parent.url }}">
+            &laquo; Back to Portfolio - Artwork
+        </a>
+    </h4>
+    <br>
+    <h2 class="content">How it Was Made</h2>
+    {{ page.body|richtext }}
+
+{% endblock %}
