@@ -28,10 +28,12 @@ img {
 }
 
 img.left {
+    margin-right: 10px;
     float: left;
 }
 
 img.right {
+    margin-right: 10px;
     float: left;
 }
 
