@@ -50,7 +50,7 @@ I was banging my head on this for a bit to realize that in my current setup, des
 - Because I went head-first into it and did the demo concurrent to the web app development. There's a lot of demo/experimentation in this. Maybe after I'm done, it's best to create a demo fork and then clean up `master`.
 - This would entail having separate sections
     - Like linking the pages to each other
-    - Creating sections: Home, ~~About~~, ~~Resume~~, Portfolio (Portfolio Gallery, Portfolio long description page), ~~Blog~~, ~~Contact~~.
+    - Creating sections: Home, ~~About~~, ~~Resume~~, Portfolio (Portfolio Gallery, ~~Portfolio long description page~~), ~~Blog~~, ~~Contact~~.
     
 **Designer Edits**
 
