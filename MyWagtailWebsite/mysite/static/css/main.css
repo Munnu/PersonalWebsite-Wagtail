@@ -21,6 +21,9 @@ body {
     margin-bottom: 60px;
 }
 
+hr {
+    border-color:#45348d;
+}
 /* review this section, from general.css,
 may be incompatible with index page */
 img {
