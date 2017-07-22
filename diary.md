@@ -7,6 +7,19 @@ I should have made the diary earlier, but haven't so I'm going off what I'm able
 What I've clearly noticed is that Wagtail is all about abstraction. I have a good feeling that if I really want to exercise class inheritcance, extending, and overriding based on my website goals, this is the place where I'll be implementing those things a bunch.
 
 ------
+**Entry - July 22, 2017**
+### Adding and tweaking <img> tag via templating language
+Wagtail adds some extra functionality to the templating structure. One of them is `img`. Instead of doing `<img src="x" ... >`, Wagtail provides `{% image [image] [resize-rule] %}` to use images in templates. 
+
+Changing img by adding a class or id or overriding the alt tag can be done by something like this: `                        {% image main_image class="img-responsive" alt=post.title %}` where class is added, and alt is overrided from the Wagtail default.
+
+source: [http://docs.wagtail.io/en/v0.7/core_components/images/index.html](http://docs.wagtail.io/en/v0.7/core_components/images/index.html)
+
+### The Wagtail Gotcha - Adding Categories to choose within a page type
+I totally forgot this bamboozled me. When adding the category row in models, there will be an empty column at first. In order to populate category types, go to the Wagtail /admin/ page, then upon logging in, look at the left pane and select Snippets, from there do
+**Snippets > Name_Of_Page_Type_That_Has_Category_Table** to add categories.
+
+------
 **Entry - July 15, 2017
 **
 ### Wagtail/Google Recaptcha
@@ -50,8 +63,19 @@ I was banging my head on this for a bit to realize that in my current setup, des
 - Because I went head-first into it and did the demo concurrent to the web app development. There's a lot of demo/experimentation in this. Maybe after I'm done, it's best to create a demo fork and then clean up `master`.
 - This would entail having separate sections
     - Like linking the pages to each other
-    - Creating sections: Home, ~~About~~, ~~Resume~~, Portfolio (Portfolio Gallery, ~~Portfolio long description page~~), ~~Blog~~, ~~Contact~~.
+    - Creating sections: ~~Home~~, ~~About~~, ~~Resume~~, Portfolio (Portfolio Gallery, ~~Portfolio long description page~~), ~~Blog~~, ~~Contact~~.
     
 **Designer Edits**
 
 - Though this belongs on the HTML/CSS version and it has nothing to do with me, there will most likely be designer edits. I think I have found a collaborator for the first time in my life.
+
+### Other Todos, Portfolio-specific
+- Minor fixes needed in portfolio gallery html
+url example: [https://munnu.github.io/PersonalWebsite/portfolio-page.html](https://munnu.github.io/PersonalWebsite/portfolio-page.html)
+
+	I haven't investigated but I believe that `<div class="thumb-overlay">`needs fixing. If I don't have a lot of content that will push the overlay to the maximum width, then it will stop where the content ends + margin value.
+
+	There's also a thing that around **`screen width≈767`**, the whitespace around each `<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 thumb">` looks asthetically unpleasing. I didn't notice this before because I used an image with a white background. I now need to think of a way to make this look more pleasing around this screen size. Maybe an image fade? Speak to designer.
+
+- Adding a way to display all categories available and filtering on categories. 
+	- All | Engineering | Art | Music | Misc
