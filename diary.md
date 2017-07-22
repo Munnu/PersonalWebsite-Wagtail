@@ -19,6 +19,19 @@ source: [http://docs.wagtail.io/en/v0.7/core_components/images/index.html](http:
 I totally forgot this bamboozled me. When adding the category row in models, there will be an empty column at first. In order to populate category types, go to the Wagtail /admin/ page, then upon logging in, look at the left pane and select Snippets, from there do
 **Snippets > Name_Of_Page_Type_That_Has_Category_Table** to add categories.
 
+### Filtering Blog Tags on current subdomain
+
+Original Glitch:
+
+- I needed to fix the 'tags' section, as it's linking to another subdomain. Not really sure what's going on here yet. Unrelated but likely necessary: I also have not created a tags page for the blog subdomain.
+
+- Now the other half of the issue is making blog-tags not go to the other subdomain when listing all the tags.
+
+Solutions to Glitch:
+
+- I figured out that I have to create a new tags page, give it a slug (I called it blog-tag). Go into the blog_page.html template, change the slugurl to look for blog-tag. 
+- The other half has something to do with handling an empty request from the model's end and also specifically filtering on current domain. See commit: [87dad77](https://github.com/Munnu/PersonalWebsite-Wagtail/commit/85dad7702e3afb0bdf3baa54aadc6d180b8395b5)
+
 ------
 **Entry - July 15, 2017
 **
@@ -44,8 +57,8 @@ I was banging my head on this for a bit to realize that in my current setup, des
 **Develop the portfolio gallery (portfolio-page)
 **
 
-- ~~I assume this will need to be developed similarly to the images section in the Wagtail tutorial, mixed with an index page that contains icons.~~
-- I want to be able to create categories: **Engineering | Art | ... | Misc | All** within portfolio gallery for a user to choose which part of the portfolio gallery is of interest to them. (See below)
+- ~~I assume this will need to be developed similarly to the images section in the Wagtail tutorial, mixed with an index page that contains icons.~~ Yes, confirmed and completed.
+- I want to be able to create categories: **Engineering | Art | ... | Misc | All** within portfolio gallery for a user to choose which part of the portfolio gallery is of interest to them. (See below under 'Other Todos')
 
 ** Creating a wagtail portfolio-item section **
 
@@ -68,14 +81,28 @@ I was banging my head on this for a bit to realize that in my current setup, des
 **Designer Edits**
 
 - Though this belongs on the HTML/CSS version and it has nothing to do with me, there will most likely be designer edits. I think I have found a collaborator for the first time in my life.
+- Copied again from below:
+ 
+	There's also a thing that around `screen width≈767`, the whitespace around each `<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 thumb">` looks asthetically unpleasing. I didn't notice this before because I used an image with a white background. I now need to think of a way to make this look more pleasing around this screen size. Maybe an image fade? Speak to designer for ideas.
 
 ### Other Todos, Portfolio-specific
 - Minor fixes needed in portfolio gallery html
 url example: [https://munnu.github.io/PersonalWebsite/portfolio-page.html](https://munnu.github.io/PersonalWebsite/portfolio-page.html)
 
-	I haven't investigated but I believe that `<div class="thumb-overlay">`needs fixing. If I don't have a lot of content that will push the overlay to the maximum width, then it will stop where the content ends + margin value.
+	~~I haven't investigated but I believe that `<div class="thumb-overlay">`needs fixing. If I don't have a lot of content that will push the overlay to the maximum width, then it will stop where the content ends + margin value.~~ 
+	
+	Eh, bullcrap workaround, use a bunch of non-breaking spaces. It's a really minor todo, so I'll leave it.
 
 	There's also a thing that around **`screen width≈767`**, the whitespace around each `<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 thumb">` looks asthetically unpleasing. I didn't notice this before because I used an image with a white background. I now need to think of a way to make this look more pleasing around this screen size. Maybe an image fade? Speak to designer.
 
 - Adding a way to display all categories available and filtering on categories. 
 	- All | Engineering | Art | Music | Misc
+	- Idea: Maybe use Tag functionality instead of Categories. I think Categories are more for searching purposes. It's also possible to have to consider a hybrid.
+
+### Todo WYSIWYG Wagtail Editor
+
+Lower priority, but 
+
+- Add codeblock functionality. I think they call these Streamfields.
+	- I think this might be of use: [https://gist.github.com/frankwiles/74a882f16704db9caa27](https://gist.github.com/frankwiles/74a882f16704db9caa27)
+	- More google fun [extra links on the topic](https://www.google.com/search?q=wagtail+code+block+addition&rlz=1C5CHFA_enUS690US690&oq=wagtail+code+block+addition&aqs=chrome..69i57.4987j0j4&sourceid=chrome&ie=UTF-8)
