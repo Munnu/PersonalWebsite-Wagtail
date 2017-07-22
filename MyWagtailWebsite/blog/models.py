@@ -64,7 +64,14 @@ class BlogTagIndexPage(Page):
 
         # Filter by tag
         tag = request.GET.get('tag')
-        blogpages = BlogPage.objects.filter(tags__name=tag)
+        if tag is None:
+            # if tags endpoint param isn't filled out, get all
+            # pages on our current website
+            blogpages = BlogPage.objects.in_site(request.site)
+        else:
+            # if tags?=<whatever_tag_here> then get our current website
+            # and filter on specific tag provided
+            blogpages = BlogPage.objects.in_site(request.site).filter(tags__name=tag)
 
         # Update template context
         context = super(BlogTagIndexPage, self).get_context(request)

@@ -50,9 +50,9 @@
         <div class="tags">
             <br>
             <h2 class="content" style="margin-bottom:-10px;">Tags</h2>
-            <hr style="border-color:#45348d;">
+            <hr>
             {% for tag in page.tags.all %}
-                <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
+                <a href="{% slugurl 'blog-tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
             {% endfor %}
         </div>
     {% endif %}

@@ -2,12 +2,17 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
+    <header>
+    <h1 class="current-page-name">Blog Tags</h1>
+    </header>
+
     {% if request.GET.tag|length %}
-        <h1 class="content">Showing pages tagged "{{ request.GET.tag }}"</h1>
+        <h1 class="content">Blog Tags - Showing pages tagged "{{ request.GET.tag }}"</h1>
+    {% else %}
+        <h2 class="content">{{ page.title }}</h2>
     {% endif %}
 
     {% for blogpage in blogpages %}
-
           <p class="content">
               <strong><a href="{% pageurl blogpage %}">{{ blogpage.title }}</a></strong><br />
               <small>Revised: {{ blogpage.latest_revision_created_at }}</small><br />
@@ -17,7 +22,9 @@
           </p>
 
     {% empty %}
+    <p class="content">
         No pages found with that tag.
+    </p>
     {% endfor %}
 
 {% endblock %}
