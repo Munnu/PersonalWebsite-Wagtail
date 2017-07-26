@@ -106,3 +106,11 @@ Lower priority, but
 - Add codeblock functionality. I think they call these Streamfields.
 	- I think this might be of use: [https://gist.github.com/frankwiles/74a882f16704db9caa27](https://gist.github.com/frankwiles/74a882f16704db9caa27)
 	- More google fun [extra links on the topic](https://www.google.com/search?q=wagtail+code+block+addition&rlz=1C5CHFA_enUS690US690&oq=wagtail+code+block+addition&aqs=chrome..69i57.4987j0j4&sourceid=chrome&ie=UTF-8)
+	
+### Todo TL;DR
+I've found myself repeating things above, so in summary
+
+- ~~Recreate /portfolio/ to be tag-based to accomodate for filtering~~ Good enough
+- Fix the search bar, extra bonus if the search bar has better search capabilities than the one in the Wagtail tutorial
+- Add codeblock functionality. I don't want to reinvent the wheel, so are there snippets that have things I'd like?
+- When things are all done, update to the latest version of Wagtail.
