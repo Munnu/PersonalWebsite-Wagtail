@@ -7,8 +7,25 @@
     <header>
     <h1 class="current-page-name">Portfolio</h1>
     </header>
-    <h2 class="content">{{ page.title }}</h2>
 
+    {% if request.GET.tag|length %}
+        <h2 class="content">{{ page.title }} - {{ request.GET.tag }}</h2>
+    {% else %}
+        <h2 class="content">{{ page.title }} - All</h2>
+    {% endif %}
+
+    <!-- portfolio navigation -->
+    <div id="portfolio-nav">
+        <nav>
+            <ul>
+                <li><a href="{% slugurl 'portfolio' %}">All</a></li>
+                <li><a href="{% slugurl 'portfolio' %}?tag=Engineering">Engineering</a></li>
+                <li><a href="{% slugurl 'portfolio' %}?tag=Art">Art</a></li>
+                <li><a href="{% slugurl 'portfolio' %}?tag=Music">Music</a></li>
+                <li><a href="{% slugurl 'portfolio' %}?tag=Misc">Misc</a></li>
+            </ul>
+        </nav>
+    </div>
 
 
     <!-- portfolio thumbnails -->
@@ -33,6 +50,10 @@
             </div>
             {% endwith %}
         {% endwith %}
+    {% empty %}
+    <p class="content">
+        No portfolio items found with that tag.
+    </p>
     {% endfor %}
 
 {% endblock %}

@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django import forms
 from django.db import models
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
-
+from modelcluster.tags import ClusterTaggableManager
 
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
@@ -16,14 +16,25 @@ from wagtail.wagtailadmin.edit_handlers import (FieldPanel,
                                                 )
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
+from taggit.models import TaggedItemBase
 
 # # Create your models here.
+class PortfolioPageTag(TaggedItemBase):
+    content_object = ParentalKey('PortfolioItemPage', related_name='tagged_items')
+
 class PortfolioPage(Page):
 
     def get_context(self, request):
-        # Update context to include only published posts, ordered by reverse-chron
+
+        # Filter by tag
+        tag = request.GET.get('tag')
+        if tag:
+            portfolio_item_pages = PortfolioItemPage.objects.filter(tags__name=tag).live().order_by('-first_published_at')
+        else:
+            portfolio_item_pages = PortfolioItemPage.objects.live().order_by('-first_published_at')
+
+        # Update template context
         context = super(PortfolioPage, self).get_context(request)
-        portfolio_item_pages = self.get_children().live().order_by('-first_published_at')
         context['portfolio_item_pages'] = portfolio_item_pages
         return context
 
@@ -33,6 +44,7 @@ class PortfolioItemPage(Page):
     intro = models.CharField(max_length=250)
     body = RichTextField(blank=True)
     categories = ParentalManyToManyField('portfolio.PortfolioCategory', blank=True)
+    tags = ClusterTaggableManager(through=PortfolioPageTag, blank=True)
 
     def main_image(self):
         gallery_item = self.gallery_images.first()
@@ -50,6 +62,7 @@ class PortfolioItemPage(Page):
         MultiFieldPanel([
             FieldPanel('date'),
             FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
+            FieldPanel('tags'),
         ], heading="Portfolio item full description"),
         FieldPanel('intro'),
         FieldPanel('body'),
