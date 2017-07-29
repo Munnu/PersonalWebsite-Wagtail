@@ -13,12 +13,12 @@ from wagtail.wagtailsearch.views import search
 
 # from wagtail repo wagtail/wagtail/project_template/site_search/views.py
 
-def site_search(request):
+
+def site_search(request, template=None, results_per_page=10, path=None):
     # Search
     search_query = str(request.GET.get('query', None))
     if search_query:
-        # print "Dir", dir( search_results = Page.objects.live().site_search())
-        search_results = Page.objects.live().search("test")
+        search_results = Page.objects.live().search(search_query)
 
         # Log the query so Wagtail can suggest promoted results
         Query.get(search_query).add_hit()
@@ -26,7 +26,7 @@ def site_search(request):
         search_results = Page.objects.none()
 
     # Render template
-    return render(request, 'site_search/site_search.html', {
+    return render(request, 'site_search/search.html', {
         'search_query': search_query,
         'search_results': search_results,
     })

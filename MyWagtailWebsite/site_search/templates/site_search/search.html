@@ -28,6 +28,6 @@
             <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
         {% endif %}
     {% elif search_query %}
-        No results found
+        <p class="content">No results found</p>
     {% endif %}
 {% endblock %}
