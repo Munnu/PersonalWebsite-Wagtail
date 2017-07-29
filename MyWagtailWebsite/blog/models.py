@@ -47,13 +47,16 @@ class BlogIndexPage(Page):
     ]
 
     def get_context(self, request):
-      # Filter by tag
+        # Filter by tag
         tag = request.GET.get('tag')
         blogpages = BlogPage.objects.filter(tags__name=tag)
 
         # Update context to include only published posts, ordered by reverse-chron
         context = super(BlogIndexPage, self).get_context(request)
-        blogpages = self.get_children().live().order_by('-first_published_at')
+
+        # basically, I didn't want my BlogTagIndexPage type to show up on my BlogIndexPage
+        # so I'm filtering my BlogIndexPage to only show BlogPage types
+        blogpages = self.get_children().live().order_by('-first_published_at').type(BlogPage)
         context['blogpages'] = blogpages
         return context
 
