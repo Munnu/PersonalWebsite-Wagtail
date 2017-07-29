@@ -114,3 +114,16 @@ I've found myself repeating things above, so in summary
 - Fix the search bar, extra bonus if the search bar has better search capabilities than the one in the Wagtail tutorial
 - Add codeblock functionality. I don't want to reinvent the wheel, so are there snippets that have things I'd like?
 - When things are all done, update to the latest version of Wagtail.
+
+References
+[https://docs.djangoproject.com/en/1.11/ref/models/fields/#model-field-types](https://docs.djangoproject.com/en/1.11/ref/models/fields/#model-field-types) - Model data types
+
+[https://docs.djangoproject.com/en/1.11/ref/models/querysets/#field-lookups](https://docs.djangoproject.com/en/1.11/ref/models/querysets/#field-lookups) - Field lookups: gte, lte, ecetera.
+
+ex: `Entry.objects.get(id__exact=None)`
+
+[https://docs.djangoproject.com/en/1.11/ref/models/querysets/#methods-that-return-new-querysets](https://docs.djangoproject.com/en/1.11/ref/models/querysets/#methods-that-return-new-querysets) - queryset methods
+
+[https://docs.djangoproject.com/en/1.11/topics/db/models/#field-types](https://docs.djangoproject.com/en/1.11/topics/db/models/#field-types)
+
+[https://tutorial.djangogirls.org/en/django_orm/](https://tutorial.djangogirls.org/en/django_orm/)
