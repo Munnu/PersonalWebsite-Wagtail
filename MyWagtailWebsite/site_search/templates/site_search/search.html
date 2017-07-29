@@ -9,16 +9,12 @@
     <h1 class="current-page-name">Search</h1>
     <h1 class="content header-title-default">Search Query{% if search_query %} - "{{ search_query }}"{% endif %}</h1>
     {% if search_results %}
-        <ul>
-            {% for result in search_results %}
-                <li>
-                    <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
-                    {% if result.search_description %}
-                        {{ result.search_description|safe }}
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
+        {% for result in search_results %}
+            <h4><a href="{% pageurl result %}">{{ result }}</a></h2>
+            {% if result.search_description %}
+                {{ result.search_description|safe }}
+            {% endif %}
+        {% endfor %}
 
         {% if search_results.has_previous %}
             <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
