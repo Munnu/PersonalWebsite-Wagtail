@@ -75,7 +75,7 @@
     <hr id="header-separator">
 
     <!-- Search Bar Section -->
-    <form action="{% url 'search' %}"  method="get">
+    <form action="{% url 'site_search' %}"  method="get">
         <div class="container">
             <div id="custom-search-input">
             <!-- search input of the search bar -->
@@ -84,7 +84,7 @@
                            name="query"{% if search_query %} value="{{ search_query }}"{% endif %}
                            placeholder="Search" />
 
-                    <!-- button section of the search bar -->
+                    <!-- button section of search bar -->
                     <span class="input-group-btn">
                         <button type="submit" class="btn btn-danger" type="button">
                             <span class="glyphicon glyphicon-search"></span>
