@@ -114,6 +114,8 @@ I've found myself repeating things above, so in summary
 - Fix the search bar, extra bonus if the search bar has better search capabilities than the one in the Wagtail tutorial
 - Add codeblock functionality. I don't want to reinvent the wheel, so are there snippets that have things I'd like?
 - When things are all done, update to the latest version of Wagtail.
+- Learn WSGI and also Django Models
+	- Like how to join things (filter on this subdomain and another subdomain, filter on this but exclude this subset) 
 
 References
 [https://docs.djangoproject.com/en/1.11/ref/models/fields/#model-field-types](https://docs.djangoproject.com/en/1.11/ref/models/fields/#model-field-types) - Model data types
