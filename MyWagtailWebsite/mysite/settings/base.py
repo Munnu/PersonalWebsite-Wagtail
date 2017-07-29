@@ -55,7 +55,12 @@ INSTALLED_APPS = [
     'contact',
     'portfolio',
     'resume',
-    'search',
+    'site_search',
+
+    'commonblocks',
+    'embed_video',
+    'wagtail_embed_videos',
+    'wagtailmedia',
 
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
@@ -100,12 +105,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mysite.urls'
 
-WAGTAILSEARCH_BACKENDS = {
-    'default': {
-        'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch2',
-        'INDEX': 'myapp'
-    }
-}
+# WAGTAILSEARCH_BACKENDS = {
+#     'default': {
+#         'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch2',
+#         'INDEX': 'myapp'
+#     }
+# }
 
 TEMPLATES = [
     {
