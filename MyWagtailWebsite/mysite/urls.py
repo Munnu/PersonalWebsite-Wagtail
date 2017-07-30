@@ -9,7 +9,7 @@ from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailsearch import urls as wagtailsearch_urls
 
-from site_search import views as search_views
+from search import views as search_views
 
 
 urlpatterns = [
@@ -18,7 +18,7 @@ urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
 
-    url(r'^search/$', search_views.site_search, name='site_search'),
+    url(r'^search/$', search_views.site_search, name='search'),
     url(r'^search/', include(wagtailsearch_urls)),
 
     url(r'', include(wagtail_urls)),
