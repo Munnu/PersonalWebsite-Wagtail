@@ -7,6 +7,14 @@ I should have made the diary earlier, but haven't so I'm going off what I'm able
 What I've clearly noticed is that Wagtail is all about abstraction. I have a good feeling that if I really want to exercise class inheritcance, extending, and overriding based on my website goals, this is the place where I'll be implementing those things a bunch.
 
 ------
+**Entry - July 29, 2017**
+### Search Functionality
+Kpeeing this entry short. I created a successful Search section that can search on Page titles successfully, see commit ([c2ef7b4](https://github.com/Munnu/PersonalWebsite-Wagtail/commit/c2ef7b4f3777f83ebe902f315927bdf410925e1a)).
+
+I created a new branch (new_search) to work on a search functionality that includes all of the other pages. It's pretty crude. What I'd like to do is have all pages that contain the searched criteria to display if they're on the main website (no subdomain) and blog subdomain, and not any other subdomains. This is where I'm stuck, somewhat.
+
+In the new version, I get the functionality desired, but I assume there is a better way to code it without manually importing all of my Page types into my search.view module.
+
 **Entry - July 22, 2017**
 ### Adding and tweaking <img> tag via templating language
 Wagtail adds some extra functionality to the templating structure. One of them is `img`. Instead of doing `<img src="x" ... >`, Wagtail provides `{% image [image] [resize-rule] %}` to use images in templates. 
@@ -111,9 +119,12 @@ Lower priority, but
 I've found myself repeating things above, so in summary
 
 - ~~Recreate /portfolio/ to be tag-based to accomodate for filtering~~ Good enough
-- Fix the search bar, extra bonus if the search bar has better search capabilities than the one in the Wagtail tutorial
+- ~~Fix the search bar, extra bonus if the search bar has better search capabilities than the one in the Wagtail tutorial~~ Good enough
 - Add codeblock functionality. I don't want to reinvent the wheel, so are there snippets that have things I'd like?
 - When things are all done, update to the latest version of Wagtail.
+
+### Things to Learn
+
 - Learn WSGI and also Django Models
 	- Like how to join things (filter on this subdomain and another subdomain, filter on this but exclude this subset) 
 
@@ -129,3 +140,5 @@ ex: `Entry.objects.get(id__exact=None)`
 [https://docs.djangoproject.com/en/1.11/topics/db/models/#field-types](https://docs.djangoproject.com/en/1.11/topics/db/models/#field-types)
 
 [https://tutorial.djangogirls.org/en/django_orm/](https://tutorial.djangogirls.org/en/django_orm/)
+
+[Wagtail Core Tests - Good for understanding how to use Page QuerySets](https://github.com/wagtail/wagtail/blob/master/wagtail/wagtailcore/tests/test_page_queryset.py)
