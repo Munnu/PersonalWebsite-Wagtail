@@ -1,4 +1,4 @@
-{% load static wagtailuserbar %}
+{% load static wagtailuserbar compress %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -15,11 +15,14 @@
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}">
 
-        {% block extra_css %}
+        {% compress css %}
             {# Override this in templates to add extra stylesheets #}
             <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
             <link rel="stylesheet" type="text/css" href="{% static 'css/otherpages.css' %}">
-        {% endblock %}
+
+            {# This is for pygments syntax highlighting on the page #}
+            <link rel="stylesheet" href="{% static 'css/pygments-styles.css' %}" />
+        {% endcompress %}
     </head>
 
     <body class="{% block body_class %}{% endblock %}">

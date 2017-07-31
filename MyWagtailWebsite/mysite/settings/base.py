@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'resume',
     'search',
 
+    'compressor',
     'embed_video',
     'wagtail_embed_videos',
     # 'wagtailmedia',
@@ -163,6 +164,7 @@ USE_TZ = True
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder', # added for css compression
 ]
 
 STATICFILES_DIRS = [
