@@ -1,4 +1,4 @@
-{% load static wagtailuserbar %}
+{% load static wagtailuserbar compress %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -12,15 +12,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="The portfolio and blog of Monique Blake">
         <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
-        
-        {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}">
-        
-        {% block extra_css %}
-        {# Override this in templates to add extra stylesheets #}
-        <link rel="stylesheet" href="{% static 'css/main.css' %}">
-        <link rel="stylesheet" href="{% static 'css/splash.css' %}">
-        {% endblock %}
+
+        {% compress css %}
+            {# Global stylesheets #}
+            <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}">
+
+            {# Override this in templates to add extra stylesheets #}
+            <link rel="stylesheet" href="{% static 'css/main.css' %}">
+            <link rel="stylesheet" href="{% static 'css/splash.css' %}">
+        {% endcompress %}
     </head>
     <body class="{% block body_class %}{% endblock %}">
        {% wagtailuserbar %}

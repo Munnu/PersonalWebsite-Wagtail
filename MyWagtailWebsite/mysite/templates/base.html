@@ -12,10 +12,10 @@
         <meta name="description" content="The portfolio and blog of Monique Blake">
         <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
 
-        {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}">
-
         {% compress css %}
+            {# Global stylesheets #}
+            <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}">
+
             {# Override this in templates to add extra stylesheets #}
             <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
             <link rel="stylesheet" type="text/css" href="{% static 'css/otherpages.css' %}">
