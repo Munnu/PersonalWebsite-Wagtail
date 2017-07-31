@@ -59,7 +59,7 @@ INSTALLED_APPS = [
 
     'embed_video',
     'wagtail_embed_videos',
-    'wagtailmedia',
+    # 'wagtailmedia',
 
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',

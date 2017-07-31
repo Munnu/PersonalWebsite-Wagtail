@@ -3,13 +3,15 @@ from __future__ import unicode_literals
 from django import forms
 from django.db import models
 
-from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.tags import ClusterTaggableManager
-from taggit.models import TaggedItemBase
 
+from taggit.models import TaggedItemBase
 from wagtail.wagtailcore.models import Page, Orderable
+
+from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailcore.fields import StreamField
+
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel,
                                                 InlinePanel,
                                                 MultiFieldPanel,
@@ -18,7 +20,6 @@ from wagtail.wagtailadmin.edit_handlers import (FieldPanel,
                                                 )
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail_embed_videos.edit_handlers import EmbedVideoChooserPanel
-from wagtailmedia.edit_handlers import MediaChooserPanel
 
 from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.models import register_snippet
@@ -147,13 +148,13 @@ class BlogPage(Page):
         ('code_block', CodeBlock()),
         ('md_block', MarkDownBlock()),
     ])
-    media = models.ForeignKey(
-        'wagtailmedia.Media',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
+    # media = models.ForeignKey(
+    #     'wagtailmedia.Media',
+    #     null=True,
+    #     blank=True,
+    #     on_delete=models.SET_NULL,
+    #     related_name='+'
+    # )
     video = models.ForeignKey(
         'wagtail_embed_videos.EmbedVideo',
         verbose_name="Video",
@@ -162,6 +163,7 @@ class BlogPage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
         index.SearchField('body'),
@@ -176,7 +178,7 @@ class BlogPage(Page):
         FieldPanel('intro'),
         FieldPanel('body', classname="full"),
         StreamFieldPanel('code_md_block'),
-        MediaChooserPanel('media'),
+        # MediaChooserPanel('media'),  # this breaks the WYSIWYG, so I'm not using it anymore
         EmbedVideoChooserPanel('video'),
     InlinePanel('gallery_images', label="Gallery images"),
     ]
