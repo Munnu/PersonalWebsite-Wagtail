@@ -9,16 +9,23 @@ from taggit.models import TaggedItemBase
 
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
+from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel,
                                                 InlinePanel,
                                                 MultiFieldPanel,
-                                                PageChooserPanel)
+                                                PageChooserPanel,
+                                                StreamFieldPanel,
+                                                )
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail_embed_videos.edit_handlers import EmbedVideoChooserPanel
+from wagtailmedia.edit_handlers import MediaChooserPanel
+
 from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.models import register_snippet
 
+from code_markdown_blocks import CodeBlock, MarkDownBlock
 
-# Create your models here.
+
 @register_snippet
 class BlogCategory(models.Model):
     name = models.CharField(max_length=255)
@@ -136,7 +143,25 @@ class BlogPage(Page):
     body = RichTextField(blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
-
+    code_md_block = StreamField([
+        ('code_block', CodeBlock()),
+        ('md_block', MarkDownBlock()),
+    ])
+    media = models.ForeignKey(
+        'wagtailmedia.Media',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    video = models.ForeignKey(
+        'wagtail_embed_videos.EmbedVideo',
+        verbose_name="Video",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
         index.SearchField('body'),
@@ -150,7 +175,10 @@ class BlogPage(Page):
         ], heading="Blog information"),
         FieldPanel('intro'),
         FieldPanel('body', classname="full"),
-        InlinePanel('gallery_images', label="Gallery images"),
+        StreamFieldPanel('code_md_block'),
+        MediaChooserPanel('media'),
+        EmbedVideoChooserPanel('video'),
+    InlinePanel('gallery_images', label="Gallery images"),
     ]
 
 
@@ -170,3 +198,4 @@ class BlogPageGalleryImage(Orderable):
 
 class BlogIndexRelatedLink(Orderable, RelatedLink):
     page = ParentalKey('BlogIndexPage', related_name='related_links')
+

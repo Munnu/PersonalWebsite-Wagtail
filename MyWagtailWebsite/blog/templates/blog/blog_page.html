@@ -1,9 +1,10 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags embed_video_tags %}
 
 {% block body_class %}template-blogpage{% endblock %}
 
 {% block content %}
+
     <header>
     <h1 class="current-page-name">Blog</h1>
     </header>
@@ -34,6 +35,49 @@
 
     <p class="content">{{ page.intro }}</p>
     {{ page.body|richtext }}
+
+    <!-- code/markdown streamfield blocks -->
+    {% with code_blocks=page.code_md_block %}
+        {% if code_blocks %}
+            {% for code_block in code_blocks %}
+                {% if code_block.block_type == 'code_block' %}
+                   <section class="block-{{ code_block.block_type }}">
+                       {{ code_block }}
+                   </section>
+                {% elif code_block.block_type == 'md_block' %}
+                    Markdown
+                    <section class="block-{{ code_block.block_type }}">
+                       {{ code_block }}
+                    </section>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <!-- end code/markdown streamfield blocks -->
+
+    <!-- external video/soundcloud  -->
+    {% video page.video.url as video %}
+        {% video video 'small' %}
+    {% endvideo %}
+    <!-- end external video/soundcloud  -->
+
+    {% with media=page.media %}
+        {% if media %}
+            <video controls width="480">
+                  <source src="{{ media.url }}" type="video/mov">
+                  <source src="{{ media.url }}" type="video/mp4">
+                  <source src="{{ media.url }}" type="video/webm">
+                  <p class="content">Your browser doesn't support HTML5 video.
+                  Here is a <a href="{{ media.url }}">link to the video</a> instead.</p>
+            </video>
+
+            <!--<audio controls>-->
+              <!--<source src="{{ media.url }}" type="audio/mp3">-->
+              <!--<source src="{{ media.url }}" type="audio/ogg">-->
+              <!--<p>Your browser doesn't support HTML5 audio. Here is a <a href="viper.mp3">link to the audio</a> instead.</p>-->
+            <!--</audio>-->
+        {% endif %}
+    {% endwith %}
 
     {% for item in page.gallery_images.all %}
         <h2 class="content">Featured Images</h2>
