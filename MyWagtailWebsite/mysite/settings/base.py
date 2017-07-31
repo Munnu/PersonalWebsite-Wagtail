@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # Application definition
-DEBUG = True
+COMPRESS_ENABLED = True  # necessary for CSS compression
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = secrets.SECRET_KEY
