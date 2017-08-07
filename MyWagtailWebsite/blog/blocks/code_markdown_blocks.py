@@ -48,24 +48,7 @@ class CodeBlock(blocks.StructBlock):
             cssclass=' '.join(css_classes),
             noclasses=False,
         )
-        return mark_safe(highlight(src, lexer, formatter))
+        return mark_safe(highlight(lang + "--\n" + src, lexer, formatter))
 
     class Meta:
         icon = 'code'
-
-
-class MarkDownBlock(blocks.TextBlock):
-    """ MarkDown Block """
-
-    class Meta:
-        icon = 'code'
-
-    def render_basic(self, value):
-        md = markdown(
-            value,
-            [
-                'markdown.extensions.fenced_code',
-                'codehilite',
-            ],
-        )
-        return mark_safe(md)
