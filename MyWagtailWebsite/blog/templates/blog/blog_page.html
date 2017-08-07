@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags embed_video_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load embed_video_tags %}
 
 {% block body_class %}template-blogpage{% endblock %}
 
@@ -21,7 +22,6 @@
             <ul class="content">
                 {% for category in categories %}
                     <li style="display: inline">
-                        {% image category.icon fill-32x32 style="vertical-align: middle" %}
                         {{ category.name }} |
                     </li>
                 {% endfor %}
@@ -34,50 +34,59 @@
     {% endif %}
 
     <p class="content">{{ page.intro }}</p>
-    {{ page.body|richtext }}
+    <!--{{ page.body|richtext }}-->
 
-    <!-- code/markdown streamfield blocks -->
-    {% with code_blocks=page.code_md_block %}
-        {% if code_blocks %}
-            {% for code_block in code_blocks %}
-                {% if code_block.block_type == 'code_block' %}
-                   <section class="block-{{ code_block.block_type }}">
-                       {{ code_block }}
-                   </section>
-                {% elif code_block.block_type == 'md_block' %}
-                    Markdown
-                    <section class="block-{{ code_block.block_type }}">
-                       {{ code_block }}
-                    </section>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
+    {% with blocks=page.page_content %}
+    {% if blocks %}
+        {% for block in blocks %}
+            {% if block.block_type == 'h2heading' %}
+                <h2 class="content">{{ block.value }}</h2>
+
+            {% elif block.block_type == 'paragraph' %}
+                {{ block.value|richtext }}
+
+            {% elif block.block_type == 'blockquote' %}
+                <blockquote>{{ block.value }}</blockquote>
+
+            {% elif block.block_type == 'document' %}
+                <p class="content doc">Document: <a href="{{ block.value }}">{{ block }}</a></p>
+
+            {% elif block.block_type == 'image' %}
+                {% image block.value width-400 %}
+
+            {% elif block.block_type == 'embed' %}
+                {{ block.value }}
+
+            {% elif block.block_type == 'link' %}
+                <p class="content">
+                    Link:
+                    <a href="{{ block.value }}">{{ block.value }}</a>
+                </p>
+
+            {% elif block.block_type == 'codeblock' %}
+               <section class="block-{{ block.block_type }}">
+                   {{ block.value }}
+               </section>
+
+            {% elif block.block_type == 'mdblock' %}
+               <section class="block-{{ block.block_type }}">
+                   {{ block.value }}
+               </section>
+
+            {% else %}
+               <section class="block-{{ block.block_type }}">
+                   {{ block }}
+               </section>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
     {% endwith %}
-    <!-- end code/markdown streamfield blocks -->
 
     <!-- external video/soundcloud  -->
     {% video page.video.url as video %}
         {% video video 'small' %}
     {% endvideo %}
     <!-- end external video/soundcloud  -->
-
-    <!--{% with media=page.media %}-->
-        <!--{% if media %}-->
-            <!--<video controls width="480">-->
-                  <!--<source src="{{ media.url }}" type="video/mov">-->
-                  <!--<source src="{{ media.url }}" type="video/mp4">-->
-                  <!--<source src="{{ media.url }}" type="video/webm">-->
-                  <!--<p class="content">Your browser doesn't support HTML5 video.-->
-                  <!--Here is a <a href="{{ media.url }}">link to the video</a> instead.</p>-->
-            <!--</video>-->
-
-            <!--<audio controls>-->
-              <!--<source src="{{ media.url }}" type="audio/mp3">-->
-              <!--<source src="{{ media.url }}" type="audio/ogg">-->
-              <!--<p>Your browser doesn't support HTML5 audio. Here is a <a href="viper.mp3">link to the audio</a> instead.</p>-->
-            <!--</audio>-->
-        {% endif %}
-    {% endwith %}
 
     {% for item in page.gallery_images.all %}
         <h2 class="content">Featured Images</h2>
