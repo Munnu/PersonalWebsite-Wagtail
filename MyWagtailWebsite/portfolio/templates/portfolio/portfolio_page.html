@@ -33,11 +33,13 @@
         {% with post=post.specific %}
             {% with post.main_image as main_image %}
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 thumb">
+                <div class="thumb-imgblock">
                 {% if main_image %}
                     <a class="thumbnail" href="{% pageurl post %}">
-                        {% image main_image fill-300x200-c100 class="img-responsive" alt=post.title %}
+                        {% image main_image original class="img-responsive" alt=post.title %}
                     </a>
                 {% endif %}
+                </div>
                 <div class="thumb-overlay">
                     <p class="thumb-blurb">{{ post.title }}
                         <span class="darrow">&darr;</span>
