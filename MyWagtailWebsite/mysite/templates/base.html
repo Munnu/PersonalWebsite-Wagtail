@@ -1,4 +1,5 @@
 {% load static wagtailuserbar compress %}
+{% load wagtailcore_tags %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -10,7 +11,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="The portfolio and blog of Monique Blake">
-        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
+        <title>
+            Monique Blake's Portfolio and Blog |
+            {% block title %}
+                {% if self.seo_title %}
+                    {{ self.seo_title }}
+                {% else %}
+                    {{ self.title }}
+                {% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+            {% endblock %}
+        </title>
 
         {% compress css %}
             {# Global stylesheets #}
@@ -37,41 +49,41 @@
 
     <!-- Navbar Section -->
         <div id="navbar-sm">
-        <nav id="main-upper-menu" class="navmenu">
-		<ul>
-            <li>
-				<a href="http://localhost:8000" title="Home">
-					<span>Home</span>
-				</a>
-			</li>
-			<li>
-				<a href="http://localhost:8000/about" title="About">
-					<span>About</span>
-				</a>
-			</li>
-			<li>
-				<a href="http://localhost:8000/resume" title="Resum&eacute;">
-					<span>Resum&eacute;</span>
-				</a>
-			</li>
-			<li>
-				<a href="http://localhost:8000/portfolio" title="Portfolio">
-					<span>P.folio</span>
-				</a>
-			</li>
-			<li>
-				<a href="http://blog.localhost:8000" title="Blog">
-					<span>Blog</span>
-				</a>
-			</li>
-			<li>
-				<a href="http://localhost:8000/contact" title="Contact">
-					<span>Mail</span>
-				</a>
-			</li>
-		</ul>
-	</nav>
-    </div>
+            <nav id="main-upper-menu" class="navmenu">
+            <ul>
+                <li>
+                    <a href="{% slugurl 'home' %}" title="Home">
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% slugurl 'about' %}" title="About">
+                        <span>About</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% slugurl 'resume' %}" title="Resum&eacute;">
+                        <span>Resum&eacute;</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% slugurl 'portfolio' %}" title="Portfolio">
+                        <span>P.folio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% slugurl 'blog' %}" title="Blog">
+                        <span>Blog</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% slugurl 'contact' %}" title="Contact">
+                        <span>Mail</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        </div>
     <!-- Navbar Section End -->
 
     </header>

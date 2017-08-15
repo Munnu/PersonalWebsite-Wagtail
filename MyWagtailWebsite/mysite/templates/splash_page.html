@@ -1,4 +1,5 @@
 {% load static wagtailuserbar compress %}
+{% load wagtailcore_tags %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -11,7 +12,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="The portfolio and blog of Monique Blake">
-        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
+        <title>
+            {% block title %}
+                {% if self.seo_title %}
+                    {{ self.seo_title }}
+                {% else %}
+                    {{ self.title }}
+                {% endif %}
+            {% endblock %}
+                {% block title_suffix %}
+            {% endblock %} |
+            Backend and Hardware Engineer, Maker, Artist
+        </title>
 
         {% compress css %}
             {# Global stylesheets #}
@@ -61,32 +73,32 @@
             <nav class="navmenu">
             <ul>
                 <li>
-                    <a href="/" title="Home">
+                    <a href="{% slugurl 'home' %}" title="Home">
                         <span>Home</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/about" title="About">
+                    <a href="{% slugurl 'about' %}" title="About">
                         <span>About</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/resume" title="Resum&eacute;">
+                    <a href="{% slugurl 'resume' %}" title="Resum&eacute;">
                         <span>Resum&eacute;</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/portfolio" title="Pfolio">
+                    <a href="{% slugurl 'portfolio' %}" title="Pfolio">
                         <span>P.folio</span>
                     </a>
                 </li>
                 <li>
-                    <a href="http://blog.localhost:8000" title="Blog">
+                    <a href="{% slugurl 'blog' %}" title="Blog">
                         <span>Blog</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/contact" title="Contact">
+                    <a href="{% slugurl 'contact' %}" title="Contact">
                         <span>Mail</span>
                     </a>
                 </li>
