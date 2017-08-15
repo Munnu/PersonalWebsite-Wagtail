@@ -14,6 +14,13 @@ SECRET_KEY = secrets.SECRET_KEY
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+ 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'sqlite_databases/devdb.sqlite3'),
+    }
+}
 
 if use_local_email_script == True:
     # for testing purposes, use shell script for localhost smtp

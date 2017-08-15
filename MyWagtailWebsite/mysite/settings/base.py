@@ -16,6 +16,7 @@ from __future__ import absolute_import, unicode_literals
 import os
 from . import secrets
 
+PRAGMA_KEY = secrets.PRAGMA_DB_KEY
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
@@ -81,6 +82,7 @@ INSTALLED_APPS = [
     'sslserver',
     'captcha',
     'wagtailcaptcha',
+    'sqlcipher',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -91,6 +93,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # 'subdomains.middleware.SubdomainURLRoutingMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -139,8 +143,9 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'sqlcipher.backend',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'sqlite_databases/prod.sqlite3'),
     }
 }
 
