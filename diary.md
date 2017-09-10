@@ -7,6 +7,12 @@ I should have made the diary earlier, but haven't so I'm going off what I'm able
 What I've clearly noticed is that Wagtail is all about abstraction. I have a good feeling that if I really want to exercise class inheritcance, extending, and overriding based on my website goals, this is the place where I'll be implementing those things a bunch.
 
 ------
+**Entry - September 9, 2017**
+### Getting static pages to load in production
+I've been working on getting this into production mode. I found that when I run my production settings (with django-compress) I needed to install dj-static to have at least my css and javascript to display. A good example of this is Kenneth Reitz' "Introducing DJ-Static" blog post from July 15, 2013 for the setup.
+### Encryption using django-sqlcipher
+So, in summary, the original one that pops up on the google search is outdated by I believe 7 years. There's a guy, Benjamin Bach that has been continually updating django-sqlcipher to be more current. I reached out to him and did a pip install from his `develop` git branch.
+
 **Entry - July 29, 2017**
 ### Search Functionality
 Kpeeing this entry short. I created a successful Search section that can search on Page titles successfully, see commit ([c2ef7b4](https://github.com/Munnu/PersonalWebsite-Wagtail/commit/c2ef7b4f3777f83ebe902f315927bdf410925e1a)).
