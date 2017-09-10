@@ -7,6 +7,15 @@ I should have made the diary earlier, but haven't so I'm going off what I'm able
 What I've clearly noticed is that Wagtail is all about abstraction. I have a good feeling that if I really want to exercise class inheritcance, extending, and overriding based on my website goals, this is the place where I'll be implementing those things a bunch.
 
 ------
+<<<<<<< HEAD
+=======
+**Entry - September 9, 2017**
+### Getting static pages to load in production
+I've been working on getting this into production mode. I found that when I run my production settings (with django-compress) I needed to install dj-static to have at least my css and javascript to display. A good example of this is Kenneth Reitz' "Introducing DJ-Static" blog post from July 15, 2013 for the setup.
+### Encryption using django-sqlcipher
+So, in summary, the original one that pops up on the google search is outdated by I believe 7 years. There's a guy, Benjamin Bach that has been continually updating django-sqlcipher to be more current. I reached out to him and did a pip install from his `develop` git branch.
+
+>>>>>>> vagrant_branch
 **Entry - July 29, 2017**
 ### Search Functionality
 Kpeeing this entry short. I created a successful Search section that can search on Page titles successfully, see commit ([c2ef7b4](https://github.com/Munnu/PersonalWebsite-Wagtail/commit/c2ef7b4f3777f83ebe902f315927bdf410925e1a)).
@@ -58,6 +67,40 @@ I was banging my head on this for a bit to realize that in my current setup, des
 [Stackoverflow](https://stackoverflow.com/questions/8418905/how-to-override-the-from-address-in-django-email-sent-through-gmail?rq=1) proves this, and so does the Google Documentation (not linked, forgot where it was). The world sees Stackoverflow as a deity, so it's all good, right? I do fear that SO is a total programming crutch, though. Besides RTFM on answers, there's more of a reliance on SO without understanding where or why someone came up to the conclusion they did.
 
 ---
+## The future
+- Figure out how to handle Attribute Errors when a table in the db has been deleted.
+	- `AttributeError: 'module' object has no attribute 'MarkDownBlock'`
+	- When makemigrations ask for a default value which wipes out the table entries that exist. 
+- Safely migrating data from one column name to another column name
+	- From one data type to another data type
+	
+- It seems like in the future I will have to use Streamfields instead of WYSIWYG as they're easier to implement and seem to have a lot of online resources on building them. [Joss' Streamfield example](https://jossingram.wordpress.com/2015/07/30/some-wagtail-v1-streamfield-examples/) [other examples from Joss](https://jossingram.wordpress.com/wagtail-recipes-and-how-tos/)
+- If not, then to use WYSIWYG in wagtail, I'd need to consider hallo.js and Wagtail hooks. I don't know much about them but here is a link that describes the architecture of the WYSIWYG editor: [link](https://news.ycombinator.com/item?id=7659134) 
+> The wysiwyg component we're using, http://hallojs.org/, supports defining extra buttons via plugins, and Wagtail provides a hook mechanism for passing in custom JS/CSS to the editor - we're just missing a bit of glue to connect the two.
+– Matt Westcott (gasman), Hacker News post
+
+There is also this tutorial: [https://jossingram.wordpress.com/2014/07/24/add-some-blockquote-buttons-to-wagtail-cms-wysiwyg-editor/](https://jossingram.wordpress.com/2014/07/24/add-some-blockquote-buttons-to-wagtail-cms-wysiwyg-editor/)
+
+### More Wagtail Resources
+- [Wagtail 1.0 (beta) - Wagtail Review and Overview, Limiations, Strengths](http://www.
+revsys.com/blog/2015/apr/29/wagtail-best-django-cms/)
+- [MerixStudio on Wagtail](http://www.merixstudio.com/blog/wagtail-open-source-content-management-system-pt-1/)
+- Basically a google search on `wagtail wysiwyg -wagtail.io -stackoverflow -github`
+- [Django Paths - on Wagtail](http://www.djangopaths.com/why-did-i-choose-wagtail/)
+
+Possible useful code
+    
+    @register.filter
+	def content_type(model):
+  	 	 """
+ 	   		Return the model name/"content type" as a string 
+ 	   		e.g BlogPage, NewsListingPage.
+   	 		Can be used with "slugify" to create CSS-friendly classnames
+    		Usage: {% raw %}{{ self|content_type|slugify }} {% endraw %}
+   		 """
+   		 return model.__class__.__name__
+From: [core_tags](https://github.com/jordij/jordijoan.me/blob/master/core/templatetags/core_tags.py), possible help with filtering on types or looking for page types
+
 ---
 
 ## My current todo
@@ -66,7 +109,7 @@ I was banging my head on this for a bit to realize that in my current setup, des
 **
 
 - ~~I assume this will need to be developed similarly to the images section in the Wagtail tutorial, mixed with an index page that contains icons.~~ Yes, confirmed and completed.
-- I want to be able to create categories: **Engineering | Art | ... | Misc | All** within portfolio gallery for a user to choose which part of the portfolio gallery is of interest to them. (See below under 'Other Todos')
+- ~~I want to be able to create categories: **Engineering | Art | ... | Misc | All** within portfolio gallery for a user to choose which part of the portfolio gallery is of interest to them. (See below under 'Other Todos')~~
 
 ** Creating a wagtail portfolio-item section **
 
@@ -76,7 +119,6 @@ I was banging my head on this for a bit to realize that in my current setup, des
 **Make the search functionality better**
 
 - ~~Maybe based on the search functionality like Open Canada. I'll hold off on this one, it is not important.~~
-- Wait, currently the search feature is broken.
 
 **Clean up my wagtail project
 **
@@ -84,45 +126,42 @@ I was banging my head on this for a bit to realize that in my current setup, des
 - Because I went head-first into it and did the demo concurrent to the web app development. There's a lot of demo/experimentation in this. Maybe after I'm done, it's best to create a demo fork and then clean up `master`.
 - This would entail having separate sections
     - ~~Like linking the pages to each other~~
-    - Creating sections: ~~Home~~, ~~About~~, ~~Resume~~, Portfolio (Portfolio Gallery, ~~Portfolio long description page~~), ~~Blog~~, ~~Contact~~.
+    - ~~Creating sections: ~~Home~~, ~~About~~, ~~Resume~~, Portfolio (Portfolio Gallery, Portfolio long description page, Blog, Contact.~~
     
 **Designer Edits**
 
 - Though this belongs on the HTML/CSS version and it has nothing to do with me, there will most likely be designer edits. I think I have found a collaborator for the first time in my life.
-- Copied again from below:
- 
-	There's also a thing that around `screen width≈767`, the whitespace around each `<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 thumb">` looks asthetically unpleasing. I didn't notice this before because I used an image with a white background. I now need to think of a way to make this look more pleasing around this screen size. Maybe an image fade? Speak to designer for ideas.
 
 ### Other Todos, Portfolio-specific
-- Minor fixes needed in portfolio gallery html
-url example: [https://munnu.github.io/PersonalWebsite/portfolio-page.html](https://munnu.github.io/PersonalWebsite/portfolio-page.html)
+- ~~Minor fixes needed in portfolio gallery html
+url example: [https://munnu.github.io/PersonalWebsite/portfolio-page.html](https://munnu.github.io/PersonalWebsite/portfolio-page.html)~~
 
 	~~I haven't investigated but I believe that `<div class="thumb-overlay">`needs fixing. If I don't have a lot of content that will push the overlay to the maximum width, then it will stop where the content ends + margin value.~~ 
 	
-	Eh, bullcrap workaround, use a bunch of non-breaking spaces. It's a really minor todo, so I'll leave it.
+	~~Eh, bullcrap workaround, use a bunch of non-breaking spaces. It's a really minor todo, so I'll leave it.~~ The fix was to set right: 0; for thumbnail overlay.
 
-	There's also a thing that around **`screen width≈767`**, the whitespace around each `<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 thumb">` looks asthetically unpleasing. I didn't notice this before because I used an image with a white background. I now need to think of a way to make this look more pleasing around this screen size. Maybe an image fade? Speak to designer.
+	~~There's also a thing that around **`screen width≈767`**, the whitespace around each `<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 thumb">` looks asthetically unpleasing. I didn't notice this before because I used an image with a white background. I now need to think of a way to make this look more pleasing around this screen size. Maybe an image fade? Speak to designer.~~
 
-- Adding a way to display all categories available and filtering on categories. 
-	- All | Engineering | Art | Music | Misc
-	- Idea: Maybe use Tag functionality instead of Categories. I think Categories are more for searching purposes. It's also possible to have to consider a hybrid.
+- ~~Adding a way to display all categories available and filtering on categories. ~~
+	- ~~All | Engineering | Art | Music | Misc~~
+	- ~~Idea: Maybe use Tag functionality instead of Categories. I think Categories are more for searching purposes. It's also possible to have to consider a hybrid.~~
 
 ### Todo WYSIWYG Wagtail Editor
 
 Lower priority, but 
 
-- Add codeblock functionality. I think they call these Streamfields.
+- ~~Add codeblock functionality. I think they call these Streamfields.~~ Nope, streamfields are modular aspects to the wagtail admin to django templating functionality.
 	- I think this might be of use: [https://gist.github.com/frankwiles/74a882f16704db9caa27](https://gist.github.com/frankwiles/74a882f16704db9caa27)
 	- More google fun [extra links on the topic](https://www.google.com/search?q=wagtail+code+block+addition&rlz=1C5CHFA_enUS690US690&oq=wagtail+code+block+addition&aqs=chrome..69i57.4987j0j4&sourceid=chrome&ie=UTF-8)
-	
-### Todo TL;DR
-I've found myself repeating things above, so in summary
 
+<<<<<<< HEAD
 - ~~Recreate /portfolio/ to be tag-based to accomodate for filtering~~ Good enough
 - ~~Fix the search bar, extra bonus if the search bar has better search capabilities than the one in the Wagtail tutorial~~ Good enough
 - Add codeblock functionality. I don't want to reinvent the wheel, so are there snippets that have things I'd like?
 - When things are all done, update to the latest version of Wagtail.
 
+=======
+>>>>>>> vagrant_branch
 ### Things to Learn
 
 - Learn WSGI and also Django Models

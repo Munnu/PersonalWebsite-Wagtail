@@ -2,3 +2,5 @@
 .idea*
 secrets.py
 */media/*
+*/static/*
+.vagrant
