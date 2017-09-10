@@ -24,6 +24,23 @@ body {
 hr {
     border-color:#45348d;
 }
+
+blockquote {
+  background: #9278ff;
+  color: #222222;
+}
+ /* for streamfield types */
+p.doc {
+    background: #dbd4db;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 3px #8273c1;
+}
+div.responsive-object {
+    padding: 10px 0 !important;
+}
+/* end streamfield types */
+
 /* review this section, from general.css,
 may be incompatible with index page */
 img {
@@ -294,6 +311,23 @@ div#portfolio-nav li:not(:first-child):before {
     margin-top: 10px;
 }
 
+div.thumb-imgblock {
+    height: 200px;
+    overflow: hidden;
+    border-radius: 5px;
+    border-bottom: solid 5px white;
+}
+
+img.img-responsive {
+    object-fit: cover;
+    width: 100%;
+    height: inherit;
+}
+
+a.thumbnail {
+    height: inherit;
+}
+
 .thumb {
     padding: 0 20px;
     padding-top: 20px;
@@ -307,11 +341,11 @@ div#portfolio-nav li:not(:first-child):before {
     border-bottom-right-radius: 4px;
     color: white;
     position: absolute;
-    width: auto;
     margin-right: 20px;
     height: 30px;
-    bottom: 20px;
+    bottom: 0;
     left: 20px;
+    right: 0;
 }
 
 .thumb-overlay:hover {
@@ -320,7 +354,7 @@ div#portfolio-nav li:not(:first-child):before {
 
 .thumb-blurb {
     height: 30px;
-    padding-top: 6px;
+    padding-top: 7px;
     overflow: hidden;
     text-align: center;
 }
@@ -334,7 +368,8 @@ div#portfolio-nav li:not(:first-child):before {
     display: block;
 }
 
-.darrow {
+.darrow
+{
     position: relative;
     right: 0;
 }

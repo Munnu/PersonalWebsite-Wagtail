@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-searchresults{% endblock %}
 
@@ -10,10 +11,14 @@
     <h1 class="content header-title-default">Search Query{% if search_query %} - "{{ search_query }}"{% endif %}</h1>
     {% if search_results %}
         {% for result in search_results %}
-            <h4><a href="{% pageurl result %}">{{ result }}</a></h2>
+            <ul class="content">
+                <li>
+                    <h4><a href="{% pageurl result %}">{{ result }}</a> - {% pageurl result %}</h4>
+                </li>
             {% if result.search_description %}
-                {{ result.search_description|safe }}
+                <ul class="content"><li>{{ result.search_description|safe }}</li></ul>
             {% endif %}
+            </ul>
         {% endfor %}
 
         {% if search_results.has_previous %}
@@ -24,6 +29,16 @@
             <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
         {% endif %}
     {% elif search_query %}
-        <p class="content">No results found</p>
+        <p class="content">No page results found</p>
     {% endif %}
+
+    {% if image_results %}
+        <hr>
+        <h1 class="content header-title-default">Image Descriptions Containing - "{{ search_query }}"</h1>
+        {% for img_result in image_results %}
+            {% image img_result fill-300x200 %}
+            <br>
+        {% endfor %}
+    {% endif %}
+
 {% endblock %}

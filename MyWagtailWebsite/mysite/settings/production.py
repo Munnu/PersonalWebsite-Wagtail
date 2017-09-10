@@ -26,6 +26,19 @@ NOCAPTCHA = False
 RECAPTCHA_USE_SSL = False
 SECURE_SSL_REDIRECT = False
 
+
+# Compress static files offline
+# http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
+
+COMPRESS_OFFLINE = True
+COMPRESS_ENABLED = True
+
+COMPRESS_CSS_FILTERS = [
+        'compressor.filters.css_default.CssAbsoluteFilter',
+            'compressor.filters.cssmin.CSSMinFilter',
+            ]
+
+
 try:
     from .local import *
 except ImportError:

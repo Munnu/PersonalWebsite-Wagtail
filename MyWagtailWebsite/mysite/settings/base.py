@@ -16,6 +16,7 @@ from __future__ import absolute_import, unicode_literals
 import os
 from . import secrets
 
+PRAGMA_KEY = secrets.PRAGMA_DB_KEY
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
@@ -29,7 +30,9 @@ DEBUG = True
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = secrets.SECRET_KEY
 
-ALLOWED_HOSTS = ['f94d7569.ngrok.io', 'localhost', '127.0.0.1', 'blog.localhost', 'old.localhost']
+COMPRESS_ENABLED = False
+
+ALLOWED_HOSTS = ['8d2dc90d.ngrok.io', 'localhost', '127.0.0.1', 'blog.localhost', 'old.localhost']
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
@@ -55,12 +58,12 @@ INSTALLED_APPS = [
     'contact',
     'portfolio',
     'resume',
-    'site_search',
+    'search',
 
-    'commonblocks',
+    'compressor',
     'embed_video',
     'wagtail_embed_videos',
-    'wagtailmedia',
+    # 'wagtailmedia',
 
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
@@ -80,6 +83,7 @@ INSTALLED_APPS = [
     'sslserver',
     'captcha',
     'wagtailcaptcha',
+    'sqlcipher',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -90,6 +94,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # 'subdomains.middleware.SubdomainURLRoutingMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -138,8 +144,9 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'sqlcipher.backend',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'sqlite_databases/prod.sqlite3'),
     }
 }
 
@@ -164,6 +171,7 @@ USE_TZ = True
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder', # added for css compression
 ]
 
 STATICFILES_DIRS = [

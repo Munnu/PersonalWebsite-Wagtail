@@ -2,23 +2,34 @@ from __future__ import unicode_literals
 
 from django import forms
 from django.db import models
-
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.tags import ClusterTaggableManager
 from taggit.models import TaggedItemBase
-
-from wagtail.wagtailcore.models import Page, Orderable
-from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel,
                                                 InlinePanel,
                                                 MultiFieldPanel,
-                                                PageChooserPanel)
+                                                PageChooserPanel,
+                                                StreamFieldPanel,
+                                                )
+from wagtail.wagtailcore import blocks
+from wagtail.wagtaildocs.blocks import DocumentChooserBlock
+from wagtail.wagtailembeds.blocks import EmbedBlock
+from wagtail.wagtailimages.blocks import ImageChooserBlock
+
+
+from wagtail.wagtailcore.fields import RichTextField
+from wagtail.wagtailcore.fields import StreamField
+from wagtail.wagtailcore.models import Page, Orderable
+
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+
 from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.models import register_snippet
+from wagtail_embed_videos.edit_handlers import EmbedVideoChooserPanel
+
+from blocks.code_markdown_blocks import CodeBlock
 
 
-# Create your models here.
 @register_snippet
 class BlogCategory(models.Model):
     name = models.CharField(max_length=255)
@@ -136,6 +147,31 @@ class BlogPage(Page):
     body = RichTextField(blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
+    page_content = StreamField([
+            ('h2_heading', blocks.CharBlock(classname="full title", icon="title")),
+            ('paragraph', blocks.RichTextBlock()),
+            ('blockquote', blocks.BlockQuoteBlock()),
+            ('document', DocumentChooserBlock()),
+            ('image', ImageChooserBlock(icon="image")),
+            ('embed', EmbedBlock()),
+            ('link', blocks.URLBlock()),
+            ('codeblock', CodeBlock()),
+        ], null=True, blank=True)
+    # media = models.ForeignKey(
+    #     'wagtailmedia.Media',
+    #     null=True,
+    #     blank=True,
+    #     on_delete=models.SET_NULL,
+    #     related_name='+'
+    # )
+    video = models.ForeignKey(
+        'wagtail_embed_videos.EmbedVideo',
+        verbose_name="Video",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -150,6 +186,9 @@ class BlogPage(Page):
         ], heading="Blog information"),
         FieldPanel('intro'),
         FieldPanel('body', classname="full"),
+        StreamFieldPanel('page_content'),
+        # MediaChooserPanel('media'),  # this breaks the WYSIWYG, so I'm not using it anymore
+        EmbedVideoChooserPanel('video'),
         InlinePanel('gallery_images', label="Gallery images"),
     ]
 
