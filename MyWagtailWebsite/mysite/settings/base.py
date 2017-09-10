@@ -26,10 +26,11 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # Application definition
 DEBUG = True
-COMPRESS_ENABLED = True  # necessary for CSS compression
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = secrets.SECRET_KEY
+
+COMPRESS_ENABLED = False
 
 ALLOWED_HOSTS = ['8d2dc90d.ngrok.io', 'localhost', '127.0.0.1', 'blog.localhost', 'old.localhost']
 
