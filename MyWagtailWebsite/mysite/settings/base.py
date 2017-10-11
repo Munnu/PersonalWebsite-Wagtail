@@ -25,14 +25,15 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # Application definition
-DEBUG = True
+#DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = secrets.SECRET_KEY
 
 COMPRESS_ENABLED = False
 
-ALLOWED_HOSTS = ['8d2dc90d.ngrok.io', 'localhost', '127.0.0.1', 'blog.localhost', 'old.localhost']
+#ALLOWED_HOSTS = ['8d2dc90d.ngrok.io', 'localhost', '127.0.0.1', 'blog.localhost', 'old.localhost']
+ALLOWED_HOSTS = ['165.227.63.130', 'moniqueblake.me', '.moniqueblake.me']
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
@@ -47,9 +48,9 @@ EMAIL_USE_TLS = secrets.Gmail_Email_Info().EMAIL_USE_TLS
 # Google Recaptcha Data
 RECAPTCHA_PUBLIC_KEY = secrets.RECAPTCHA_PUBLIC_KEY
 RECAPTCHA_PRIVATE_KEY = secrets.RECAPTCHA_PRIVATE_KEY
-NOCAPTCHA = False
-RECAPTCHA_USE_SSL = False
-SECURE_SSL_REDIRECT = False
+NOCAPTCHA = True
+#RECAPTCHA_USE_SSL = False
+#SECURE_SSL_REDIRECT = False
 
 INSTALLED_APPS = [
     'home',
@@ -142,10 +143,17 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'sqlcipher.backend',
+#        # 'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'sqlite_databases/prodcipher.sqlite3'),
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'sqlcipher.backend',
-        # 'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'sqlite_databases/prod.sqlite3'),
     }
 }
@@ -188,6 +196,7 @@ MEDIA_URL = '/media/'
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "mysite"
+WAGTAILIMAGES_MAX_UPLOAD_SIZE = 30 * 1024 * 1024  # i.e. 30MB
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
