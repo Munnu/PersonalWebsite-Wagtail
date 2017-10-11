@@ -29,9 +29,9 @@ class PortfolioPage(Page):
         # Filter by tag
         tag = request.GET.get('tag')
         if tag:
-            portfolio_item_pages = PortfolioItemPage.objects.filter(tags__name=tag).live().order_by('-first_published_at')
+            portfolio_item_pages = PortfolioItemPage.objects.filter(tags__name=tag).live().order_by('-date')
         else:
-            portfolio_item_pages = PortfolioItemPage.objects.live().order_by('-first_published_at')
+            portfolio_item_pages = PortfolioItemPage.objects.live().order_by('-date')
 
         # Update template context
         context = super(PortfolioPage, self).get_context(request)

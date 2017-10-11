@@ -27,7 +27,6 @@ Pillow==4.2.1
 pip-autoremove==0.9.0
 Pygments==2.2.0
 pyparsing==2.2.0
-pysqlcipher==2.6.10
 pytz==2017.2
 rcssmin==1.0.6
 requests==2.18.4
@@ -43,3 +42,4 @@ wagtailcommonblocks==0.0.2
 wagtailmedia==0.1.4
 webencodings==0.5.1
 Willow==1.0
+pysqlcipher==2.6.10
