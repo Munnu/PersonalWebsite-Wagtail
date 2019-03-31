@@ -223,31 +223,26 @@ div#navbar-sm {
         background-position: center; 
         background-size: 100%;
     }
+
     nav.navmenu ul li:nth-child(2) a {
-        background-image: url(../icons/menu/about.svg);
-        background-repeat: no-repeat;
-        background-position: center; 
-        background-size: 100%;
-    }
-    nav.navmenu ul li:nth-child(3) a {
         background-image: url(../icons/menu/resume.svg);
         background-repeat: no-repeat;
         background-position: center; 
         background-size: 100%;
     }
-    nav.navmenu ul li:nth-child(4) a {
+    nav.navmenu ul li:nth-child(3) a {
         background-image: url(../icons/menu/portfolio.svg);
         background-repeat: no-repeat;
         background-position: center; 
         background-size: 100%;
     }
-    nav.navmenu ul li:nth-child(5) a {
+    nav.navmenu ul li:nth-child(4) a {
         background-image: url(../icons/menu/blog.svg);
         background-repeat: no-repeat;
         background-position: center; 
         background-size: 100%;
     }
-    nav.navmenu ul li:nth-child(6) a {
+    nav.navmenu ul li:nth-child(5) a {
         background-image: url(../icons/menu/contact.svg);
         background-repeat: no-repeat;
         background-position: center; 
