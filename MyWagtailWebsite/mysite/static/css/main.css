@@ -124,7 +124,7 @@ div#navbar-sm {
 
 /* for large logo version */
 #main-blurb-h5 {
-    color: #3d2b88;
+    color: #6f649c;
     font-size: 2em;
     padding-left: 7px;
     opacity: 0.8;
@@ -430,7 +430,7 @@ a.thumbnail {
 }
 
 #footer-copyright {
-    color: #45348d;
+    color: #60528f;
     display: inline-block;
     position: relative;
     top: 15px;
