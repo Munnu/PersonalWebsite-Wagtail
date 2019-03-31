@@ -14,6 +14,7 @@ is a good color
 html {
   position: relative;
   min-height: 100%;
+  font-size: 62.5%;
 }
 
 body {
@@ -57,9 +58,11 @@ img.right {
     float: left;
 }
 
+/* color: #b98186; */
 p.content, li.content, ul.content, ol.content, .rich-text {
     text-align: justify;
-    color: #8273c1;
+    color: #bb8585;
+    font-size: 2rem;
 }
 
 div.tags {
@@ -67,12 +70,23 @@ div.tags {
 }
 
 h1.content, h2.content {
-    color: #9278ff;
-    font-size: 2em;
+    /* color: #9278ff; */
+    color: #af9bff;
+    font-size: 5rem;
 }
 
 h1.current-page-name {
     display: none;
+}
+
+h3 {
+    color: #9aadf8;
+    font-size: 2.5rem;
+}
+
+h4 {
+    color: #ecca77;
+    font-size: 2.2rem;
 }
 /* end */
 
