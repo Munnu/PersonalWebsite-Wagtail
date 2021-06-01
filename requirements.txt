@@ -37,7 +37,7 @@ rjsmin==1.0.12
 six==1.11.0
 static3==0.7.0
 Unidecode==0.4.21
-urllib3==1.22
+urllib3==1.26.5
 wagtail==1.13.1
 wagtail-django-recaptcha==0.2
 wagtail-embed-videos==0.3.2
